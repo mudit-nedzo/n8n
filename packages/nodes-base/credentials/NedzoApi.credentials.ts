@@ -1,11 +1,11 @@
-import type { ICredentialType, INodeProperties } from 'n8n-workflow';
+import type { IAuthenticateGeneric, ICredentialType, INodeProperties } from 'n8n-workflow';
 
 export class NedzoApi implements ICredentialType {
 	name = 'nedzoApi';
 
 	displayName = 'Nedzo API';
 
-	documentationUrl = 'nedzo';
+	documentationUrl = 'https://docs.nedzo.ai';
 
 	properties: INodeProperties[] = [
 		{
@@ -16,4 +16,13 @@ export class NedzoApi implements ICredentialType {
 			default: '',
 		},
 	];
+
+	authenticate: IAuthenticateGeneric = {
+		type: 'generic',
+		properties: {
+			headers: {
+				Authorization: '=Bearer {{$credentials.apiKey}}',
+			},
+		},
+	};
 }

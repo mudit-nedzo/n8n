@@ -4,14 +4,9 @@
 	"codexVersion": "1.0",
 	"categories": ["Communication", "Sales"],
 	"resources": {
-		"credentialDocumentation": [
-			{
-				"url": "https://docs.n8n.io/integrations/builtin/credentials/nedzo/"
-			}
-		],
 		"primaryDocumentation": [
 			{
-				"url": "https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.nedzo/"
+				"url": "https://nedzo.ai/docs"
 			}
 		]
 	}

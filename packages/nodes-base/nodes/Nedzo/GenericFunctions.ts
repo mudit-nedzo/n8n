@@ -13,22 +13,16 @@ export async function nedzoApiRequest(
 	body: IDataObject = {},
 	qs: IDataObject = {},
 ): Promise<unknown> {
-	const credentials = await this.getCredentials('nedzoApi');
-
 	const options: {
 		method: IHttpRequestMethods;
 		qs?: IDataObject;
 		body?: IDataObject;
 		url: string;
 		json: boolean;
-		headers: { Authorization: string };
 	} = {
 		method,
 		url: `https://api.nedzo.ai${resource}`,
 		json: true,
-		headers: {
-			Authorization: `Bearer ${credentials.apiKey}`,
-		},
 	};
 
 	if (Object.keys(body).length > 0) {
@@ -40,7 +34,7 @@ export async function nedzoApiRequest(
 	}
 
 	try {
-		return await this.helpers.httpRequest(options);
+		return await this.helpers.httpRequestWithAuthentication.call(this, 'nedzoApi', options);
 	} catch (error) {
 		throw new NodeApiError(this.getNode(), error);
 	}
