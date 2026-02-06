@@ -418,6 +418,41 @@ export class Nedzo implements INodeType {
 				description: 'UUID of the agent',
 			},
 
+			// Agent: Update - Agent Type selector
+			{
+				displayName: 'Agent Type',
+				name: 'updateAgentType',
+				type: 'options',
+				required: true,
+				displayOptions: {
+					show: {
+						resource: ['agent'],
+						operation: ['update'],
+					},
+				},
+				options: [
+					{
+						name: 'Inbound Voice',
+						value: 'Inbound Voice',
+					},
+					{
+						name: 'Outbound Voice',
+						value: 'Outbound Voice',
+					},
+					{
+						name: 'Chat',
+						value: 'Chat',
+					},
+					{
+						name: 'Widget',
+						value: 'Widget',
+					},
+				],
+				default: 'Outbound Voice',
+				description:
+					'Select the type of agent you are updating. This ensures only relevant fields are shown.',
+			},
+
 			// Agent: Update
 			{
 				displayName: 'Update Fields',
@@ -451,7 +486,12 @@ export class Nedzo implements INodeType {
 						name: 'voiceId',
 						type: 'string',
 						default: '',
-						description: 'Voice provider ID for text-to-speech (Voice agents only)',
+						description: 'Voice provider ID for text-to-speech',
+						displayOptions: {
+							show: {
+								'/updateAgentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Is Active',
@@ -465,14 +505,24 @@ export class Nedzo implements INodeType {
 						name: 'backgroundSound',
 						type: 'boolean',
 						default: true,
-						description: 'Enable background sound during calls (Voice agents only)',
+						description: 'Enable background sound during calls',
+						displayOptions: {
+							show: {
+								'/updateAgentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Opening Line',
 						name: 'openingLine',
 						type: 'string',
 						default: '',
-						description: 'First message the agent speaks when a call starts (Voice agents only)',
+						description: 'First message the agent speaks when a call starts',
+						displayOptions: {
+							show: {
+								'/updateAgentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Language',
@@ -489,21 +539,36 @@ export class Nedzo implements INodeType {
 							{ name: 'Japanese', value: 'japanese' },
 						],
 						default: 'english',
-						description: 'Agent language (Voice agents only)',
+						description: 'Agent language',
+						displayOptions: {
+							show: {
+								'/updateAgentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Voicemail',
 						name: 'voicemail',
 						type: 'boolean',
 						default: false,
-						description: 'Enable voicemail detection (Outbound Voice only)',
+						description: 'Enable voicemail detection',
+						displayOptions: {
+							show: {
+								'/updateAgentType': ['Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Voicemail Message',
 						name: 'voicemailMessage',
 						type: 'string',
 						default: '',
-						description: 'Message to leave when voicemail is detected (Outbound Voice only)',
+						description: 'Message to leave when voicemail is detected',
+						displayOptions: {
+							show: {
+								'/updateAgentType': ['Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'HIPAA Compliance',
@@ -512,20 +577,35 @@ export class Nedzo implements INodeType {
 						default: false,
 						description:
 							'When this is enabled, no logs, recordings, or transcriptions will be stored (default: false)',
+						displayOptions: {
+							show: {
+								'/updateAgentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Call Duration',
 						name: 'callDuration',
 						type: 'number',
 						default: 30,
-						description: 'Maximum call duration in minutes 1-60 (Voice agents only)',
+						description: 'Maximum call duration in minutes (1-60)',
+						displayOptions: {
+							show: {
+								'/updateAgentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Speed',
 						name: 'speed',
 						type: 'number',
 						default: 1.0,
-						description: 'Voice speed multiplier 0.5-1.5 (Voice agents only)',
+						description: 'Voice speed multiplier (0.5-1.5)',
+						displayOptions: {
+							show: {
+								'/updateAgentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 				],
 			},
