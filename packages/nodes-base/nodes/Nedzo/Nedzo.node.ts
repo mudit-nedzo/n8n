@@ -278,6 +278,11 @@ export class Nedzo implements INodeType {
 						type: 'string',
 						default: '',
 						description: 'Voice provider ID for text-to-speech',
+						displayOptions: {
+							show: {
+								'/agentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Is Active',
@@ -292,6 +297,11 @@ export class Nedzo implements INodeType {
 						type: 'boolean',
 						default: true,
 						description: 'Enable background sound during calls',
+						displayOptions: {
+							show: {
+								'/agentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Opening Line',
@@ -299,6 +309,11 @@ export class Nedzo implements INodeType {
 						type: 'string',
 						default: '',
 						description: 'First message the agent speaks when a call starts',
+						displayOptions: {
+							show: {
+								'/agentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Language',
@@ -316,6 +331,11 @@ export class Nedzo implements INodeType {
 						],
 						default: 'english',
 						description: 'Agent language',
+						displayOptions: {
+							show: {
+								'/agentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Voicemail',
@@ -323,6 +343,11 @@ export class Nedzo implements INodeType {
 						type: 'boolean',
 						default: false,
 						description: 'Enable voicemail detection',
+						displayOptions: {
+							show: {
+								'/agentType': ['Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Voicemail Message',
@@ -330,13 +355,24 @@ export class Nedzo implements INodeType {
 						type: 'string',
 						default: '',
 						description: 'Message to leave when voicemail is detected',
+						displayOptions: {
+							show: {
+								'/agentType': ['Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'HIPAA Compliance',
 						name: 'hipaaCompliance',
 						type: 'boolean',
 						default: false,
-						description: 'Enable HIPAA compliance mode (no logs, recordings, or transcriptions)',
+						description:
+							'When this is enabled, no logs, recordings, or transcriptions will be stored (default: false)',
+						displayOptions: {
+							show: {
+								'/agentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Call Duration',
@@ -344,6 +380,11 @@ export class Nedzo implements INodeType {
 						type: 'number',
 						default: 30,
 						description: 'Maximum call duration in minutes (1-60)',
+						displayOptions: {
+							show: {
+								'/agentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 					{
 						displayName: 'Speed',
@@ -351,6 +392,11 @@ export class Nedzo implements INodeType {
 						type: 'number',
 						default: 1.0,
 						description: 'Voice speed multiplier (0.5-1.5)',
+						displayOptions: {
+							show: {
+								'/agentType': ['Inbound Voice', 'Outbound Voice'],
+							},
+						},
 					},
 				],
 			},
@@ -405,7 +451,7 @@ export class Nedzo implements INodeType {
 						name: 'voiceId',
 						type: 'string',
 						default: '',
-						description: 'Voice provider ID for text-to-speech',
+						description: 'Voice provider ID for text-to-speech (Voice agents only)',
 					},
 					{
 						displayName: 'Is Active',
@@ -419,14 +465,14 @@ export class Nedzo implements INodeType {
 						name: 'backgroundSound',
 						type: 'boolean',
 						default: true,
-						description: 'Enable background sound during calls',
+						description: 'Enable background sound during calls (Voice agents only)',
 					},
 					{
 						displayName: 'Opening Line',
 						name: 'openingLine',
 						type: 'string',
 						default: '',
-						description: 'First message the agent speaks when a call starts',
+						description: 'First message the agent speaks when a call starts (Voice agents only)',
 					},
 					{
 						displayName: 'Language',
@@ -443,42 +489,43 @@ export class Nedzo implements INodeType {
 							{ name: 'Japanese', value: 'japanese' },
 						],
 						default: 'english',
-						description: 'Agent language',
+						description: 'Agent language (Voice agents only)',
 					},
 					{
 						displayName: 'Voicemail',
 						name: 'voicemail',
 						type: 'boolean',
 						default: false,
-						description: 'Enable voicemail detection',
+						description: 'Enable voicemail detection (Outbound Voice only)',
 					},
 					{
 						displayName: 'Voicemail Message',
 						name: 'voicemailMessage',
 						type: 'string',
 						default: '',
-						description: 'Message to leave when voicemail is detected',
+						description: 'Message to leave when voicemail is detected (Outbound Voice only)',
 					},
 					{
 						displayName: 'HIPAA Compliance',
 						name: 'hipaaCompliance',
 						type: 'boolean',
 						default: false,
-						description: 'Enable HIPAA compliance mode (no logs, recordings, or transcriptions)',
+						description:
+							'When this is enabled, no logs, recordings, or transcriptions will be stored (default: false)',
 					},
 					{
 						displayName: 'Call Duration',
 						name: 'callDuration',
 						type: 'number',
 						default: 30,
-						description: 'Maximum call duration in minutes (1-60)',
+						description: 'Maximum call duration in minutes 1-60 (Voice agents only)',
 					},
 					{
 						displayName: 'Speed',
 						name: 'speed',
 						type: 'number',
 						default: 1.0,
-						description: 'Voice speed multiplier (0.5-1.5)',
+						description: 'Voice speed multiplier 0.5-1.5 (Voice agents only)',
 					},
 				],
 			},
